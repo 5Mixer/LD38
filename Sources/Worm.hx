@@ -10,6 +10,7 @@ class Worm {
 	public var segments:Array<WormSegment> = [];
 	public var grow = false;
 	public var justHead = true;
+	public var dropping = false;
 	var map:WorldGrid;
 	public function new (map:WorldGrid){
 		segments.push({x:1,y:3,rotation:0});
@@ -65,8 +66,12 @@ class Worm {
 		if (head.rotation == 3){
 			newHead.y--;
 		}
-		if (map.get(newHead.x,newHead.y).id!=8){
+		if (dropping || map.get(newHead.x,newHead.y).id!=9){
 			head = newHead;
+		}
+		if (dropping){
+			if (newHead.x > 0 && newHead.y > 0)
+				dropping = false;
 		}
 		
 		segments.insert(0,head);

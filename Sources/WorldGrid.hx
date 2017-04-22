@@ -16,9 +16,9 @@ class WorldGrid {
 		for (y in 0...height){
 			for (x in 0...width){
 				if (x==0||y==0||x==width-1||y==height-1){
-					tiles.push(new Tile(8));
+					tiles.push(new Tile(9));
 				}else{
-					tiles.push(new Tile(Math.floor(Math.random()*7)));
+					tiles.push(new Tile(1+Math.floor(Math.random()*7)));
 
 				}
 			}

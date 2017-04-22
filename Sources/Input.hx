@@ -12,11 +12,11 @@ class Input {
 	function kDown(key:kha.Key,char:String){
 		keys.set(key,true);
 		chars.set(char,true);
+		justUpChars.push(char);
+		justUpKeys.push(key);
 	}
 	function kUp(key:kha.Key,char:String){
 		keys.set(key,false);
 		chars.set(char,false);
-		justUpChars.push(char);
-		justUpKeys.push(key);
 	}
 }
