@@ -13,6 +13,9 @@ class WorldObject {
 	public function onCollide () {
 
 	}
+	public function moveUpdate () {
+
+	}
 	public function render(g:kha.graphics2.Graphics){
 
 	}

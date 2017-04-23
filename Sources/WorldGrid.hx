@@ -1,14 +1,21 @@
 package ;
 
 
-class WorldGrid {
+class WorldGrid implements pathfinder.IMap {
 	public var tiles:Array<Tile> = [];
 	public var width:Int = 0;
 	public var height:Int = 0;
+	
+	public var rows( default, null ):Int;
+	public var cols( default, null ):Int;
 	var time = 0;
 	var tileSize = 8;
-	public function new (mapSize:Int){
+	var p:Project;
+	public function new (mapSize:Int,project:Project){
 		width = height = mapSize;
+		rows = height;
+		cols = width;
+		this.p = project;
 		emptyMap();
 	}
 	public function emptyMap () {
@@ -24,6 +31,16 @@ class WorldGrid {
 			}
 		}
 	}
+	public function isWalkable( x:Int, y:Int ):Bool
+	{
+		for (object in p.worldObjects){
+			if (Std.is(object,Wall)){
+				if (object.x == x && object.y == y)
+					return false;
+			}
+		}
+		return get(x,y).id != 9;
+	}
 	public function get(x:Int, y:Int){
 		return tiles[y*width+x];
 	}
@@ -33,8 +50,8 @@ class WorldGrid {
 			for (x in 0...width){
 				var tile = tiles[(y*width)+x];
 				
-				var off = Math.min(((Math.sqrt(Math.pow(8-x,2)+Math.pow(8-y,2))*16)+(time*10))/300,1)*8;
-				g.drawSubImage(kha.Assets.images.mapTiles,x*tileSize,(y*tileSize)+off-8,tile.id*tileSize,0,tileSize,tileSize);
+				var off =  1 - Math.min(((x*y)+time/8)-8,1);
+				g.drawSubImage(kha.Assets.images.mapTiles,off/2+x*tileSize,off/2+(y*tileSize),tile.id*tileSize,0,tileSize-off,tileSize-off);
 			}
 		}
 	}

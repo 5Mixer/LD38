@@ -11,10 +11,10 @@ class Worm {
 	public var grow = false;
 	public var justHead = true;
 	public var dropping = false;
-	public var energy = 5;
 	var map:WorldGrid;
+	public var dead = false;
 	public function new (map:WorldGrid){
-		segments.push({x:1,y:3,rotation:0});
+		segments.push({x:8,y:6,rotation:0});
 		this.map = map;
 	}
 	public function render (g:kha.graphics2.Graphics){
@@ -65,7 +65,7 @@ class Worm {
 		if (head.rotation == 3){
 			newHead.y--;
 		}
-		if (dropping || map.get(newHead.x,newHead.y).id!=9){
+		if (dropping || map.isWalkable(newHead.x,newHead.y)){
 			head = newHead;
 		}
 		if (dropping){

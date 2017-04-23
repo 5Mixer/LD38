@@ -8,7 +8,7 @@ class Energy extends WorldObject {
 	override public function onCollide(){
 		dead = true;
 		kha.audio1.Audio.play(kha.Assets.sounds.energy);
-		project.playerWorm.energy++;
+		project.playerItems.push(Math.random()>.5 ? Project.PlayerItem.Bomb : Project.PlayerItem.Wall);
 		project.screenshake += 5;
 		for (tx in 0...3)
 			for (ty in 0...3)
