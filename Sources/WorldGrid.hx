@@ -33,7 +33,7 @@ class WorldGrid {
 			for (x in 0...width){
 				var tile = tiles[(y*width)+x];
 				
-				var off = Math.min(((Math.sqrt(Math.pow(x,2)+Math.pow(y,2))*32)+(time*8))/400,1)*8;
+				var off = Math.min(((Math.sqrt(Math.pow(8-x,2)+Math.pow(8-y,2))*16)+(time*10))/300,1)*8;
 				g.drawSubImage(kha.Assets.images.mapTiles,x*tileSize,(y*tileSize)+off-8,tile.id*tileSize,0,tileSize,tileSize);
 			}
 		}

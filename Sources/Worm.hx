@@ -11,11 +11,10 @@ class Worm {
 	public var grow = false;
 	public var justHead = true;
 	public var dropping = false;
+	public var energy = 5;
 	var map:WorldGrid;
 	public function new (map:WorldGrid){
 		segments.push({x:1,y:3,rotation:0});
-		segments.push({x:1,y:2,rotation:0});
-		segments.push({x:1,y:1,rotation:0});
 		this.map = map;
 	}
 	public function render (g:kha.graphics2.Graphics){
